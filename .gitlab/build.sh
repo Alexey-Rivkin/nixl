@@ -94,7 +94,7 @@ curl -fSsL "https://github.com/openucx/ucx/tarball/${UCX_VERSION}" | tar xz
           --with-dm \
           --enable-mt && \
         make -j && \
-        make -j install-strip && \
+        $SUDO make -j install-strip && \
         $SUDO ldconfig \
 )
 
