@@ -133,7 +133,7 @@ ENV LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 ENV CUDA_PATH=/usr/local/cuda
 
 WORKDIR /workspace/nixl
-ENV VIRTUAL_ENV=/workspace/nixl/.venv
+ENV VIRTUAL_ENV=/workspace/nixl/..v
 RUN uv venv $VIRTUAL_ENV --python $DEFAULT_PYTHON_VERSION && \
     uv pip install --upgrade meson pybind11 patchelf
 
