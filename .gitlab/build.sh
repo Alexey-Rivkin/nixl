@@ -188,7 +188,7 @@ rm "libfabric-${LIBFABRIC_VERSION#v}.tar.bz2"
   cd etcd-cpp-apiv3 && \
   mkdir build && cd build && \
   cmake .. && \
-  make -j"${NPROC:-$(nproc)}" && \
+  make -j"$NPROC" && \
   $SUDO make install && \
   $SUDO ldconfig \
 )
@@ -199,7 +199,7 @@ rm "libfabric-${LIBFABRIC_VERSION#v}.tar.bz2"
   mkdir aws_sdk_build && \
   cd aws_sdk_build && \
   cmake ../aws-sdk-cpp/ -DCMAKE_BUILD_TYPE=Release -DBUILD_ONLY="s3" -DENABLE_TESTING=OFF -DCMAKE_INSTALL_PREFIX=/usr/local && \
-  make -j"${NPROC:-$(nproc)}" && \
+  make -j"$NPROC" && \
   $SUDO make install
 )
 
@@ -239,4 +239,4 @@ ninja -j${NPROC:-$(nproc)} -C nixl_build && ninja -j${NPROC:-$(nproc)} -C nixl_b
 
 cd benchmark/nixlbench
 meson setup nixlbench_build -Dnixl_path=${INSTALL_DIR} -Dprefix=${INSTALL_DIR}
-ninja -j${NPROC:-$(nproc)} -C nixlbench_build && ninja -j${NPROC:-$(nproc)} -C nixlbench_build install
+ninja -j"$NPROC" -C nixlbench_build && ninja -j"$NPROC" -C nixlbench_build install
