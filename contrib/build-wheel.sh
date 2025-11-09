@@ -86,7 +86,7 @@ PKG_NAME="nixl-cu${CUDA_MAJOR}"
 ./contrib/tomlutil.py --wheel-name $PKG_NAME pyproject.toml
 # Control number of parallel jobs for ninja (used by meson-python)
 export NINJA="ninja -j${NPROC:-16}"
-uv build --wheel --out-dir $TMP_DIR --python $PYTHON_VERSION
+uv build --no-build-isolation --wheel --out-dir $TMP_DIR --python $PYTHON_VERSION
 
 # Bundle libraries
 mkdir $TMP_DIR/dist
