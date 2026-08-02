@@ -33,14 +33,9 @@ matrix:
       - "2_28"
     # All Python versions NIXL supports (pyproject requires-python >=3.10).
     python_version:
-      - "3.10"
-      - "3.11"
       - "3.12"
-      - "3.13"
-      - "3.14"
     arch:
       - x86_64
-      - aarch64
 
 env:
   NPROC: 16
@@ -114,12 +109,7 @@ steps:
       # curl-PUT (no python on the runner for twine); Artifactory indexes it as a
       # pip repo. rc fails the step on any upload error; set +x hides the token.
       set +x
-      rc=0
-      for whl in dist/nixl*.whl; do
-        curl -fsSL -u "${ARTIFACTORY_USER}:${ARTIFACTORY_TOKEN}" \
-          -T "${whl}" "${DEST}/$(basename "${whl}")" || rc=1
-      done
-      exit $rc
+      echo "TEST BUILD - upload skipped, DEST would be ${DEST}"
 
 taskName: '${name}_${manylinux}/${arch}/python_${python_version}'
 
